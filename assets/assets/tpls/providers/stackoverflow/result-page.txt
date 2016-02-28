@@ -1,0 +1,5 @@
+{{template "base/result-page-head.txt" . -}}
+{{.Question}}
+
+{{"\033[1m"}}Answered by {{.AnswerAuthor}}:{{"\033[0m"}}
+{{.Answer}}

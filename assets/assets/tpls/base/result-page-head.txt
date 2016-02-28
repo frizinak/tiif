@@ -1,0 +1,3 @@
+{{$author := .Author}}
+{{"\033[1;34m"}}{{.Title}}{{"\033[0m"}}
+{{- if $author}} [{{.Author}}]{{end}}
