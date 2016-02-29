@@ -4,6 +4,7 @@ import (
 	"io"
 	"path"
 	"text/template"
+	"unicode/utf8"
 
 	"github.com/frizinak/tiif/assets"
 )
@@ -18,12 +19,19 @@ func init() {
 			"concat": func(a, b string) string { return a + b },
 			"trim": func(s string) string {
 				runes := []rune(s)
-				l := terminalWidth
-				if l > len(runes) {
-					l = len(runes)
+				var l int
+				var o int
+				for i, _ := range runes {
+					ln := utf8.RuneLen(runes[i])
+					if ln+l > terminalWidth {
+						break
+					}
+
+					o++
+					l += ln
 				}
 
-				return string(runes[0:l])
+				return string(runes[0:o])
 			},
 		},
 	)
