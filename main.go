@@ -1,21 +1,15 @@
 package main
 
 import (
-	"bytes"
 	"errors"
 	"flag"
 	"fmt"
 	"log"
-	"net/http"
-	"net/url"
 	"os"
 	"os/exec"
 	"strconv"
 	"strings"
 
-	"golang.org/x/net/html"
-
-	"github.com/PuerkitoBio/goquery"
 	"github.com/frizinak/tiif/engine"
 	"github.com/frizinak/tiif/httpcache"
 	"github.com/frizinak/tiif/provider"
@@ -30,62 +24,6 @@ var noResults error = errors.New("No Results")
 
 func init() {
 	cache = httpcache.New(10)
-}
-
-func intMax(x, y int) int {
-	if x > y {
-		return x
-	}
-
-	return y
-}
-
-func createRequest(u string) (*http.Request, error) {
-	purl, err := url.Parse(u)
-	if err != nil {
-		return nil, err
-	}
-
-	if purl.Scheme == "" {
-		purl.Scheme = "https"
-	}
-
-	u = purl.String()
-
-	req, err := http.NewRequest("GET", u, nil)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Set(
-		"User-Agent",
-		"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "+
-			"(KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36",
-	)
-
-	req.Header.Set("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8")
-	req.Header.Set("Dnt", "1")
-	req.Header.Set("X-Do-Not-Track", "1")
-	req.Header.Set("Accept-Language", "en-US,en")
-
-	return req, nil
-}
-
-func getDOM(u string) (*goquery.Document, error) {
-	req, err := createRequest(u)
-	if err != nil {
-		return nil, err
-	}
-
-	b := bytes.NewBuffer(<-cache.Exec(req))
-	node, err := html.Parse(b)
-	if err != nil {
-		return nil, err
-	}
-
-	dom := goquery.NewDocumentFromNode(node)
-
-	return dom, nil
 }
 
 func getResults(
@@ -143,13 +81,13 @@ func printResults(results []*engine.Result) error {
 	return nil
 }
 
-func getResult(results []*engine.Result) (*engine.Result, error) {
+func getResult(results []*engine.Result) (*engine.Result, string, error) {
 	var n int
 	resetCursor := "\033[1A\033[1G\033[K"
 	for {
 		in, err := terminal.Prompt(resetCursor + "> ")
 		if err != nil {
-			return nil, err
+			return nil, "", err
 		}
 
 		if len(in) == 0 {
@@ -167,18 +105,19 @@ func getResult(results []*engine.Result) (*engine.Result, error) {
 			browser = true
 			in = in[1:]
 		case 'q':
-			return nil, nil
+			return nil, "", nil
 		case '?':
 			fmt.Printf(
-				"%s[1-%d] to read, prefix with o for browser. q to quit.",
-				resetCursor,
+				"[1-%d] to read, prefix with o for browser. q to quit.",
 				len(results),
 			)
+
+			continue
 		}
 
 		n, err = strconv.Atoi(in)
 		if err != nil {
-			continue
+			return nil, in, nil
 		}
 
 		if n < 1 || n > len(results) {
@@ -193,7 +132,7 @@ func getResult(results []*engine.Result) (*engine.Result, error) {
 		break
 	}
 
-	return results[n-1], nil
+	return results[n-1], "", nil
 }
 
 func getPage(
@@ -242,16 +181,55 @@ func getPage(
 		return err
 	}
 
-	r, err = getResult(results)
-	if err != nil {
+	return nil
+}
+
+func run(query string, engines []engine.Engine, providers []provider.Provider) error {
+	// Run query through engines until we get results
+	var results []*engine.Result
+	for _, engine := range engines {
+		var err error
+		results, err = getResults(engine, providers, query)
+		if err == noResults {
+			continue
+		}
+
+		if err != nil {
+			return err
+		}
+
+		break
+	}
+
+	// Nope
+	if len(results) == 0 {
+		return noResults
+	}
+
+	if err := printResults(results); err != nil {
 		return err
 	}
 
-	if r == nil {
-		return nil
-	}
+	// Run prompt
+	for {
+		result, q, err := getResult(results)
+		if err != nil {
+			return err
+		}
 
-	return getPage(results, r, providers)
+		if q != "" {
+			return run(q, engines, providers)
+		}
+
+		if result == nil {
+			return nil
+		}
+
+		// Got a result, pass it to the provider
+		if err := getPage(results, result, providers); err != nil {
+			return err
+		}
+	}
 }
 
 func main() {
@@ -305,45 +283,8 @@ func main() {
 		providers = availableProviders
 	}
 
-	// Run query through engines until we get results
 	query := strings.Join(flag.Args(), " ")
-	var results []*engine.Result
-	for _, engine := range engines {
-		var err error
-		results, err = getResults(engine, providers, query)
-		if err == noResults {
-			continue
-		}
-
-		if err != nil {
-			log.Fatal(err)
-		}
-
-		break
-	}
-
-	// Nope
-	if len(results) == 0 {
-		log.Fatal(noResults)
-	}
-
-	if err := printResults(results); err != nil {
-		log.Fatal(err)
-	}
-
-	// Run prompt
-	result, err := getResult(results)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	if result == nil {
-		return
-	}
-
-	// Got a result, pass it to the provider
-	err = getPage(results, result, providers)
-	if err != nil {
+	if err := run(query, engines, providers); err != nil {
 		log.Fatal(err)
 	}
 }
