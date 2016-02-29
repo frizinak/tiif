@@ -73,10 +73,10 @@ func (s *StackOverflow) Parse(doc *goquery.Document) (Result, error) {
 	bestAnswerAuthor := bestAnswerN.Find(".user-details>a").Text()
 
 	return &StackOverflowResult{
-		strings.TrimSpace(title),
-		strings.TrimSpace(author),
-		strings.TrimSpace(question),
-		strings.TrimSpace(bestAnswer),
-		strings.TrimSpace(bestAnswerAuthor),
+		singleBreak(title),
+		singleBreak(author),
+		singleBreak(question),
+		singleBreak(bestAnswer),
+		singleBreak(bestAnswerAuthor),
 	}, nil
 }

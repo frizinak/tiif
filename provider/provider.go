@@ -1,6 +1,17 @@
 package provider
 
-import "github.com/PuerkitoBio/goquery"
+import (
+	"regexp"
+	"strings"
+
+	"github.com/PuerkitoBio/goquery"
+)
+
+var singleBreakRE *regexp.Regexp
+
+func init() {
+	singleBreakRE = regexp.MustCompile(`\n+`)
+}
 
 type Result interface {
 	Title() string
@@ -14,4 +25,8 @@ type Provider interface {
 	Domain() string
 	Match(url string) bool
 	Parse(doc *goquery.Document) (Result, error)
+}
+
+func singleBreak(s string) string {
+	return strings.TrimSpace(singleBreakRE.ReplaceAllString(s, "\n"))
 }

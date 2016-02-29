@@ -12,13 +12,13 @@ type WikipediaSection struct {
 }
 
 func (s *WikipediaSection) Body() string {
-	return strings.Join(s.body, "\n")
+	return strings.Join(s.body, "\n\n")
 }
 
 type WikipediaResult struct {
 	title       string
 	author      string
-	description string
+	description []string
 	sections    []*WikipediaSection
 }
 
@@ -31,7 +31,7 @@ func (s *WikipediaResult) Author() string {
 }
 
 func (s *WikipediaResult) Body() string {
-	return s.description
+	return strings.Join(s.description, "\n\n")
 }
 
 func (s *WikipediaResult) Sections() []*WikipediaSection {
@@ -64,13 +64,12 @@ func (s *Wikipedia) Parse(doc *goquery.Document) (Result, error) {
 	root := doc.Find("#content")
 	title := root.Find("h1#firstHeading").Text()
 	contentN := root.Find("#mw-content-text")
-	note := strings.TrimSpace(contentN.Find(".hatnote").Text())
-	firstParagraph := contentN.Find("p").First().Text()
+	note := contentN.Find(".hatnote").Text()
+	description := make([]string, 0, 1)
 
 	sections := make([]*WikipediaSection, 0)
 
 	contentN.Children().EachWithBreak(func(i int, s *goquery.Selection) bool {
-
 		if title := s.Find(".mw-headline"); s.Is("h2, h3") && title.Length != nil {
 			id, _ := title.Attr("id")
 			if id == "References" || id == "External_links" {
@@ -85,17 +84,19 @@ func (s *Wikipedia) Parse(doc *goquery.Document) (Result, error) {
 		} else if len(sections) > 0 {
 			sections[len(sections)-1].body = append(
 				sections[len(sections)-1].body,
-				strings.TrimSpace(s.Text()),
+				singleBreak(s.Text()),
 			)
+		} else {
+			description = append(description, singleBreak(s.Text()))
 		}
 
 		return true
 	})
 
 	return &WikipediaResult{
-		strings.TrimSpace(title),
-		note,
-		firstParagraph,
+		singleBreak(title),
+		singleBreak(note),
+		description,
 		sections,
 	}, nil
 }
