@@ -242,6 +242,7 @@ func main() {
 	availableProviders := []provider.Provider{
 		&provider.StackOverflow{},
 		&provider.Wikipedia{},
+		&provider.ArchWiki{},
 	}
 
 	enabledEngines := make([]*bool, len(availableEngines))

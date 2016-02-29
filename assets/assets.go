@@ -4,6 +4,7 @@
 // assets/assets/tpls/base/result-page.txt
 // assets/assets/tpls/base/search-result.txt
 // assets/assets/tpls/base/search-results.txt
+// assets/assets/tpls/providers/archwiki/result-page.txt
 // assets/assets/tpls/providers/stackoverflow/result-page.txt
 // assets/assets/tpls/providers/wikipedia/result-page.txt
 // DO NOT EDIT!
@@ -153,6 +154,26 @@ func tplsBaseSearchResultsTxt() (*asset, error) {
 	return a, nil
 }
 
+var _tplsProvidersArchwikiResultPageTxt = []byte("\x1f\x8b\x08\x00\x00\x09\x6e\x88\x00\xff\x5c\xcd\xc1\x0a\xc2\x30\x0c\x06\xe0\xbb\x4f\x11\xca\x8e\xb6\x4e\xea\x49\xf1\xe2\x2b\xe8\x4d\x41\xa2\x8d\xb3\xd0\x75\x63\x8d\xa0\x84\xbe\xbb\x9d\xdb\xc9\xdb\x47\xf2\x27\xbf\x08\x53\xdb\x07\x64\x02\x75\xc3\x44\xab\x81\xd2\x2b\xb0\xee\xb1\x21\xfd\x24\x74\x86\xdf\xac\xc0\x80\xce\x79\x21\x62\x0e\x9d\xfb\x14\x15\xc2\x80\xb1\x21\xa8\xae\x4b\xa8\x12\x6c\xf7\x60\x8e\x74\x67\xdf\xc5\x34\x67\xd5\xa5\xb6\xf6\xbc\xde\xd9\x4d\xab\x72\x2e\xb7\x27\xcf\x81\x46\x4d\x9b\x7a\x1c\x97\x9c\x7f\xc0\xef\xed\x5f\x85\x08\x45\x37\x55\xcd\xf8\x06\x00\x00\xff\xff\x2e\xa3\x65\x3e\xac\x00\x00\x00")
+
+func tplsProvidersArchwikiResultPageTxtBytes() ([]byte, error) {
+	return bindataRead(
+		_tplsProvidersArchwikiResultPageTxt,
+		"tpls/providers/archwiki/result-page.txt",
+	)
+}
+
+func tplsProvidersArchwikiResultPageTxt() (*asset, error) {
+	bytes, err := tplsProvidersArchwikiResultPageTxtBytes()
+	if err != nil {
+		return nil, err
+	}
+
+	info := bindataFileInfo{name: "tpls/providers/archwiki/result-page.txt", size: 172, mode: os.FileMode(420), modTime: time.Unix(1456778062, 0)}
+	a := &asset{bytes: bytes, info: info}
+	return a, nil
+}
+
 var _tplsProvidersStackoverflowResultPageTxt = []byte("\x1f\x8b\x08\x00\x00\x09\x6e\x88\x00\xff\xaa\xae\x2e\x49\xcd\x2d\xc8\x49\x2c\x49\x55\x50\x4a\x4a\x2c\x4e\xd5\x2f\x4a\x2d\x2e\xcd\x29\xd1\x2d\x48\x4c\x4f\xd5\xcd\x48\x4d\x4c\xd1\x2b\xa9\x28\x51\x52\xd0\x53\xd0\xad\xad\xe5\xaa\xae\xd6\x0b\x2c\x4d\x2d\x2e\xc9\xcc\xcf\x03\xf2\x80\x5c\xa5\x18\x03\x63\xe3\x68\xc3\x5c\xa5\xda\x5a\xc7\xbc\xe2\xf2\xd4\xa2\xd4\x14\x85\xa4\x4a\x05\xa0\x3a\x08\xd7\xb1\xb4\x24\x23\xbf\xa8\xb6\xd6\x0a\xa6\xd4\x00\xa4\x94\x0b\x2e\x0f\x64\x03\x02\x00\x00\xff\xff\x5d\x44\xf4\x00\x81\x00\x00\x00")
 
 func tplsProvidersStackoverflowResultPageTxtBytes() ([]byte, error) {
@@ -249,6 +270,7 @@ var _bindata = map[string]func() (*asset, error){
 	"tpls/base/result-page.txt": tplsBaseResultPageTxt,
 	"tpls/base/search-result.txt": tplsBaseSearchResultTxt,
 	"tpls/base/search-results.txt": tplsBaseSearchResultsTxt,
+	"tpls/providers/archwiki/result-page.txt": tplsProvidersArchwikiResultPageTxt,
 	"tpls/providers/stackoverflow/result-page.txt": tplsProvidersStackoverflowResultPageTxt,
 	"tpls/providers/wikipedia/result-page.txt": tplsProvidersWikipediaResultPageTxt,
 }
@@ -301,6 +323,9 @@ var _bintree = &bintree{nil, map[string]*bintree{
 			"search-results.txt": &bintree{tplsBaseSearchResultsTxt, map[string]*bintree{}},
 		}},
 		"providers": &bintree{nil, map[string]*bintree{
+			"archwiki": &bintree{nil, map[string]*bintree{
+				"result-page.txt": &bintree{tplsProvidersArchwikiResultPageTxt, map[string]*bintree{}},
+			}},
 			"stackoverflow": &bintree{nil, map[string]*bintree{
 				"result-page.txt": &bintree{tplsProvidersStackoverflowResultPageTxt, map[string]*bintree{}},
 			}},
