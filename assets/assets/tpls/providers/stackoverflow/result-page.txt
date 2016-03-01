@@ -10,7 +10,11 @@
 {{- if .Answer }}
 {{"\033[34m"}}Answered by {{.AnswerAuthor}}:{{"\033[0m"}}
 {{range $_, $s := .Answer}}
+{{if .IsCode -}}
+{{.Content | colorLines "\033[32m"}}
+{{else -}}
 {{.Content}}
+{{end -}}
 {{end}}
 {{else}}
 {{"\033[31m"}}Not answered{{"\033[0m"}}
