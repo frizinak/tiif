@@ -1,5 +1,17 @@
 {{template "base/result-page-head.txt" . -}}
-{{.Question}}
+{{range $_, $s := .Question}}
+{{if .IsCode -}}
+{{.Content | colorLines "\033[32m"}}
+{{else -}}
+{{.Content}}
+{{end -}}
+{{end}}
 
-{{"\033[1m"}}Answered by {{.AnswerAuthor}}:{{"\033[0m"}}
-{{.Answer}}
+{{- if .Answer }}
+{{"\033[34m"}}Answered by {{.AnswerAuthor}}:{{"\033[0m"}}
+{{range $_, $s := .Answer}}
+{{.Content}}
+{{end}}
+{{else}}
+{{"\033[31m"}}Not answered{{"\033[0m"}}
+{{end}}

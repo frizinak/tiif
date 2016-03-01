@@ -3,6 +3,7 @@ package main
 import (
 	"io"
 	"path"
+	"strings"
 	"text/template"
 	"unicode/utf8"
 
@@ -15,6 +16,11 @@ func init() {
 	tpl = template.New("root")
 	tpl.Funcs(
 		template.FuncMap{
+			"colorLines": func(color, str string) string {
+				// unix less resets the color after each newline
+				s := strings.Split(str, "\n")
+				return color + strings.Join(s, "\n"+color) + "\033[0m"
+			},
 			"sum":    func(a, b int) int { return a + b },
 			"concat": func(a, b string) string { return a + b },
 			"trim": func(s string) string {
