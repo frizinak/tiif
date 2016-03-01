@@ -89,6 +89,7 @@ func getResult(results []*engine.Result) (*engine.Result, string, error) {
 		if err != nil {
 			return nil, "", err
 		}
+		resetCursor = "\033[1A\033[1G\033[K"
 
 		if len(in) == 0 {
 			continue
@@ -108,9 +109,12 @@ func getResult(results []*engine.Result) (*engine.Result, string, error) {
 			return nil, "", nil
 		case '?':
 			fmt.Printf(
-				"[1-%d] to read, prefix with o for browser. q to quit.",
+				"%s[1-%d] to read, prefix with o for browser. q to quit. ",
+				resetCursor,
 				len(results),
 			)
+
+			resetCursor = ""
 
 			continue
 		}
