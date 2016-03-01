@@ -29,11 +29,24 @@ func (g *Google) URL(q string, domains []string, limit int) string {
 func (g *Google) Parse(doc *goquery.Document, limit int) ([]*Result, error) {
 	results := []*Result{}
 	rNodes := doc.Find("#ires ol .g") // h3.r a")
+
 	rNodes.Each(func(i int, n *goquery.Selection) {
+		a := n.Find("h3.r a")
+		rawURL, _ := a.Attr("href")
+		googleURL, err := url.Parse(rawURL)
+		if err != nil {
+			return
+		}
+
+		u, ok := googleURL.Query()["q"]
+		if !ok {
+			return
+		}
+
 		results = append(results, &Result{
-			singleLine(n.Find("h3.r a").Text()),
+			singleLine(a.Text()),
 			singleLine(n.Find(".st").Text()),
-			singleLine(n.Find(".s .kv cite").Text()),
+			u[0],
 		})
 	})
 
