@@ -67,7 +67,7 @@ func (s *Wikipedia) Parse(doc *goquery.Document) (Result, error) {
 	note := contentN.Find(".hatnote").Text()
 	description := make([]string, 0, 1)
 
-	sections := make([]*WikipediaSection, 0)
+	sections := []*WikipediaSection{}
 
 	contentN.Children().EachWithBreak(func(i int, s *goquery.Selection) bool {
 		if title := s.Find(".mw-headline"); s.Is("h2, h3") && title.Length != nil {

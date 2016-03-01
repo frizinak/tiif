@@ -21,7 +21,7 @@ func init() {
 				runes := []rune(s)
 				var l int
 				var o int
-				for i, _ := range runes {
+				for i := range runes {
 					ln := utf8.RuneLen(runes[i])
 					if ln+l > terminalWidth {
 						break
@@ -41,7 +41,7 @@ func init() {
 		panic(err)
 	}
 
-	for i, _ := range tpls {
+	for i := range tpls {
 		tpls[i] = path.Join("base", tpls[i])
 	}
 
@@ -66,7 +66,7 @@ func init() {
 func execTpl(w io.Writer, name string, data interface{}, overrides []string) error {
 	name = name + ".txt"
 	tplName := path.Join("base", name)
-	for i, _ := range overrides {
+	for i := range overrides {
 		_tplName := path.Join("providers", overrides[i], name)
 		if tpl.Lookup(_tplName) != nil {
 			tplName = _tplName

@@ -27,7 +27,7 @@ func (g *DuckDuckGo) URL(q string, domains []string, limit int) string {
 }
 
 func (g *DuckDuckGo) Parse(doc *goquery.Document, limit int) ([]*Result, error) {
-	results := make([]*Result, 0)
+	results := []*Result{}
 	rNodes := doc.Find("#links > .results_links > .links_main") // h3.r a")
 	if rNodes.Find(".no-results").Length() != 0 {
 		return nil, nil

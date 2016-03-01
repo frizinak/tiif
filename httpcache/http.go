@@ -1,4 +1,4 @@
-// A dumb memory consuming http request cacher.
+// Package httpcache contains a dumb memory consuming http request cacher.
 package httpcache
 
 import (

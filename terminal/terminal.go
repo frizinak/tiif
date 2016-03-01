@@ -1,5 +1,3 @@
-// Props to nsf/termbox-go
-
 package terminal
 
 import (
@@ -31,6 +29,7 @@ func IntPrompt(q string) (input int, err error) {
 	return
 }
 
+// Props to nsf/termbox-go
 type winsize struct {
 	rows    uint16
 	cols    uint16

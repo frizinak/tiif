@@ -20,7 +20,7 @@ import (
 var terminalWidth int
 var cache *httpcache.Client
 
-var noResults error = errors.New("No Results")
+var errNoResults = errors.New("No Results")
 
 func init() {
 	cache = httpcache.New(10)
@@ -53,7 +53,7 @@ func getResults(
 
 	if len(results) == 0 {
 		log.Println(url)
-		return nil, noResults
+		return nil, errNoResults
 	}
 
 	for _, r := range results {
@@ -190,7 +190,7 @@ func run(query string, engines []engine.Engine, providers []provider.Provider) e
 	for _, engine := range engines {
 		var err error
 		results, err = getResults(engine, providers, query)
-		if err == noResults {
+		if err == errNoResults {
 			continue
 		}
 
@@ -203,7 +203,7 @@ func run(query string, engines []engine.Engine, providers []provider.Provider) e
 
 	// Nope
 	if len(results) == 0 {
-		return noResults
+		return errNoResults
 	}
 
 	if err := printResults(results); err != nil {

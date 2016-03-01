@@ -27,7 +27,7 @@ func (g *Google) URL(q string, domains []string, limit int) string {
 }
 
 func (g *Google) Parse(doc *goquery.Document, limit int) ([]*Result, error) {
-	results := make([]*Result, 0)
+	results := []*Result{}
 	rNodes := doc.Find("#ires ol .g") // h3.r a")
 	rNodes.Each(func(i int, n *goquery.Selection) {
 		results = append(results, &Result{
