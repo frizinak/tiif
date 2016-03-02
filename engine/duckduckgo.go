@@ -1,6 +1,7 @@
 package engine
 
 import (
+	"fmt"
 	"net/url"
 
 	"github.com/PuerkitoBio/goquery"
@@ -23,7 +24,8 @@ func (g *DuckDuckGo) URL(q string, domains []string, limit int) string {
 		dms += " site:" + dm
 	}
 
-	return "https://duckduckgo.com/html?q=" + url.QueryEscape(q+dms)
+	return "https://duckduckgo.com/html?q=" +
+		url.QueryEscape(fmt.Sprintf("%s (%s)", q, dms))
 }
 
 func (g *DuckDuckGo) Parse(doc *goquery.Document, limit int) ([]*Result, error) {
