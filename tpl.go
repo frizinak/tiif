@@ -8,6 +8,7 @@ import (
 	"unicode/utf8"
 
 	"github.com/frizinak/tiif/assets"
+	fstrings "github.com/frizinak/tiif/strings"
 )
 
 var tpl *template.Template
@@ -38,6 +39,9 @@ func init() {
 				}
 
 				return string(runes[0:o])
+			},
+			"fold": func(s string) string {
+				return fstrings.Fold(s, terminalWidth)
 			},
 		},
 	)

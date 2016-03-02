@@ -1,9 +1,9 @@
 {{template "base/result-page-head.txt" . -}}
 {{range $_, $s := .Question}}
 {{if .IsCode -}}
-{{.Content | colorLines "\033[32m"}}
+{{.Content | fold | colorLines "\033[32m"}}
 {{else -}}
-{{.Content}}
+{{.Content | fold}}
 {{end -}}
 {{end}}
 
@@ -11,9 +11,9 @@
 {{"\033[34m"}}Answered by {{.AnswerAuthor}}:{{"\033[0m"}}
 {{range $_, $s := .Answer}}
 {{if .IsCode -}}
-{{.Content | colorLines "\033[32m"}}
+{{.Content | fold | colorLines "\033[32m"}}
 {{else -}}
-{{.Content}}
+{{.Content | fold}}
 {{end -}}
 {{end}}
 {{else}}

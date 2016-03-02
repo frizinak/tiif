@@ -1,10 +1,10 @@
 {{template "base/result-page-head.txt" . -}}
-{{.Body}}
+{{.Body | fold}}
 
 {{ range $_, $s := .Sections -}}
 {{"\033[1;34m"}}{{.Title}}{{"\033[0m"}}
 {{if .Body -}}
-{{.Body}}
+{{.Body | fold}}
 {{end}}
 
 {{end}}

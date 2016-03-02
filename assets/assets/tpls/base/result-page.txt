@@ -1,2 +1,2 @@
 {{template "base/result-page-head.txt" .}}
-{{.Body}}
+{{.Body | fold}}
