@@ -24,6 +24,9 @@ func init() {
 			},
 			"sum":    func(a, b int) int { return a + b },
 			"concat": func(a, b string) string { return a + b },
+			"indent": func(amount int, s string) string {
+				return fstrings.Indent(s, amount)
+			},
 			"trim": func(s string) string {
 				runes := []rune(s)
 				var l int

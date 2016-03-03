@@ -89,7 +89,7 @@ func tplsBaseResultPageHeadTxt() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "tpls/base/result-page-head.txt", size: 101, mode: os.FileMode(420), modTime: time.Unix(1456951061, 0)}
+	info := bindataFileInfo{name: "tpls/base/result-page-head.txt", size: 101, mode: os.FileMode(420), modTime: time.Unix(1456731782, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -109,7 +109,7 @@ func tplsBaseResultPageTxt() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "tpls/base/result-page.txt", size: 60, mode: os.FileMode(420), modTime: time.Unix(1456951061, 0)}
+	info := bindataFileInfo{name: "tpls/base/result-page.txt", size: 60, mode: os.FileMode(420), modTime: time.Unix(1456993306, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -129,7 +129,7 @@ func tplsBaseSearchResultTxt() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "tpls/base/search-result.txt", size: 88, mode: os.FileMode(420), modTime: time.Unix(1456951061, 0)}
+	info := bindataFileInfo{name: "tpls/base/search-result.txt", size: 88, mode: os.FileMode(420), modTime: time.Unix(1456731782, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -149,7 +149,7 @@ func tplsBaseSearchResultsTxt() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "tpls/base/search-results.txt", size: 108, mode: os.FileMode(420), modTime: time.Unix(1456951061, 0)}
+	info := bindataFileInfo{name: "tpls/base/search-results.txt", size: 108, mode: os.FileMode(420), modTime: time.Unix(1456731782, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -169,12 +169,12 @@ func tplsProvidersArchwikiResultPageTxt() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "tpls/providers/archwiki/result-page.txt", size: 186, mode: os.FileMode(420), modTime: time.Unix(1456951013, 0)}
+	info := bindataFileInfo{name: "tpls/providers/archwiki/result-page.txt", size: 186, mode: os.FileMode(420), modTime: time.Unix(1456993306, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
 
-var _tplsProvidersStackoverflowResultPageTxt = []byte("\x1f\x8b\x08\x00\x00\x09\x6e\x88\x00\xff\xbc\x4f\x4d\x4b\x03\x31\x10\xbd\xfb\x2b\x1e\x4b\x8f\x6e\xac\xae\xa7\x82\x87\xd2\x93\x20\x82\x67\x05\x49\xcd\xb4\x5d\x48\x33\x25\x33\x8b\xca\x9a\xff\x6e\x76\x13\x41\x14\xaf\x9e\x66\x92\xf7\x35\x6f\x1c\x95\x8e\x27\x6f\x95\xd0\x6c\xad\xd0\x45\x24\x19\xbc\xb6\x27\xbb\xa7\xf6\x40\xd6\x19\x7d\xd3\x06\x06\x6d\x4a\x67\xe3\x18\x6d\xd8\x13\x16\xcf\xe7\x58\x08\x56\x37\x30\x0f\x03\x89\xf6\x1c\x66\xb4\xdf\xc1\xdc\xca\x86\x1d\x55\xba\xd9\x70\x50\x0a\x8a\x0f\xec\xd8\xbb\x3c\x5e\xd8\x73\xbc\xeb\x03\x09\x9a\xa7\x65\xd7\x3d\x76\x57\xc7\x66\xe6\x92\x97\x3f\x64\x05\x0e\xae\xa2\x79\xcb\x33\x2f\x2d\xa6\xc0\x75\x90\x57\x8a\x98\xa1\x6a\x79\x3d\x59\x96\x7f\x72\xd8\xbe\x23\x5b\x96\xe7\x7a\xd0\x03\xc7\x94\x56\x5f\xdc\x65\x4d\xff\x55\xac\xf0\xff\xbd\x56\x11\x7c\x2f\x73\x39\x19\xdd\xb3\xc2\xd6\x42\x3f\x4f\x2f\xc2\xcf\x00\x00\x00\xff\xff\x07\x6d\xa0\x5c\xc9\x01\x00\x00")
+var _tplsProvidersStackoverflowResultPageTxt = []byte("\x1f\x8b\x08\x00\x00\x09\x6e\x88\x00\xff\xc4\x8f\xcf\x4a\x03\x31\x10\xc6\xef\x3e\xc5\x47\xe8\xd1\x8d\xb5\xeb\xa9\xe0\xa1\xf4\x24\x88\xe0\x59\x41\x52\x33\x6d\x17\xb2\x49\xc9\xcc\xa2\xb2\xe6\xdd\xcd\x6e\x22\x88\xe8\xb9\xa7\x99\x9d\xef\xcf\xe6\x37\x8e\x42\xfd\xc9\x19\x21\xa8\x9d\x61\xba\x8a\xc4\x83\x93\xe6\x64\x0e\xd4\x1c\xc9\x58\x2d\xef\xa2\xa0\xd1\xa4\x74\x31\x8e\xd1\xf8\x03\x61\xf1\x72\x89\x05\x63\x7d\x0b\xfd\x38\x10\x4b\x17\xfc\xac\x76\x7b\xe8\x3b\xde\x06\x4b\xd5\xae\xb7\xc1\x0b\x79\xc1\x27\xf6\xc1\xd9\x3c\x5e\x83\x0b\xf1\xbe\xf3\xc4\x50\xcf\xcb\xb6\x7d\x6a\x57\xbd\xca\xf7\xce\xdb\xc9\xb7\x9a\x63\xe4\xf8\x9f\x86\x22\x7b\x5b\xd5\xbc\xe5\x99\x97\x06\xd3\xbf\x37\x9e\xdf\x28\x62\x96\x6a\xfb\x4d\xaf\x52\x2a\x77\xb2\xd8\x7d\x20\x57\x96\xcf\xcd\x20\xc7\x10\x53\x5a\x7f\x7b\x97\x93\xf5\x2f\xc6\xe2\x3f\x27\x61\x09\xfc\xe4\xba\x9e\x1e\xfb\x10\x04\xa6\xb2\xfd\xa6\x28\xc1\xaf\x00\x00\x00\xff\xff\x65\xf9\x57\xae\xdf\x01\x00\x00")
 
 func tplsProvidersStackoverflowResultPageTxtBytes() ([]byte, error) {
 	return bindataRead(
@@ -189,7 +189,7 @@ func tplsProvidersStackoverflowResultPageTxt() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "tpls/providers/stackoverflow/result-page.txt", size: 457, mode: os.FileMode(420), modTime: time.Unix(1456951013, 0)}
+	info := bindataFileInfo{name: "tpls/providers/stackoverflow/result-page.txt", size: 479, mode: os.FileMode(420), modTime: time.Unix(1456996398, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -209,7 +209,7 @@ func tplsProvidersWikipediaResultPageTxt() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "tpls/providers/wikipedia/result-page.txt", size: 186, mode: os.FileMode(420), modTime: time.Unix(1456951013, 0)}
+	info := bindataFileInfo{name: "tpls/providers/wikipedia/result-page.txt", size: 186, mode: os.FileMode(420), modTime: time.Unix(1456993306, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }

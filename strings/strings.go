@@ -75,3 +75,8 @@ func Fold(s string, width int) string {
 
 	return strings.Join(lines, "\n")
 }
+
+func Indent(s string, amount int) string {
+	indent := strings.Repeat(" ", amount)
+	return indent + strings.Join(strings.Split(s, "\n"), "\n"+indent)
+}
