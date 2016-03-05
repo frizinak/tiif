@@ -17,6 +17,14 @@ func intMax(x, y int) int {
 	return y
 }
 
+func intMin(x, y int) int {
+	if x < y {
+		return x
+	}
+
+	return y
+}
+
 func createRequest(u string) (*http.Request, error) {
 	purl, err := url.Parse(u)
 	if err != nil {

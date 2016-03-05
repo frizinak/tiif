@@ -44,7 +44,7 @@ func init() {
 				return string(runes[0:o])
 			},
 			"fold": func(s string) string {
-				return fstrings.Fold(s, terminalWidth)
+				return fstrings.Fold(s, intMin(120, terminalWidth))
 			},
 		},
 	)
