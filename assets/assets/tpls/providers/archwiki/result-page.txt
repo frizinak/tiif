@@ -1,4 +1,4 @@
-{{template "base/result-page-head.txt" . -}}
+{{template "base/result-page-head.txt" .}}
 {{.Body | fold}}
 
 {{ range $_, $s := .Sections -}}

@@ -1,4 +1,4 @@
-{{template "base/result-page-head.txt" . -}}
+{{template "base/result-page-head.txt" .}}
 {{range $_, $s := .Question}}
 {{if .IsCode -}}
 {{.Content | fold | colorLines "\033[32m" | indent 2}}
@@ -8,7 +8,7 @@
 {{end}}
 
 {{- if .Answer }}
-{{"\033[34m"}}Answered by {{.AnswerAuthor}}:{{"\033[0m"}}
+{{"\033[1;34m"}}Answered by {{.AnswerAuthor}}:{{"\033[0m"}}
 {{range $_, $s := .Answer}}
 {{if .IsCode -}}
 {{.Content | fold | colorLines "\033[32m" | indent 2}}
