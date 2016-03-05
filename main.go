@@ -23,7 +23,7 @@ var cache *httpcache.Client
 var errNoResults = errors.New("No Results")
 
 func init() {
-	cache = httpcache.New(10)
+	cache = httpcache.New(3)
 }
 
 func getResults(
