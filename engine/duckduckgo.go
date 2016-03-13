@@ -37,11 +37,11 @@ func (g *DuckDuckGo) Parse(doc *goquery.Document, limit int) ([]*Result, error) 
 
 	rNodes.EachWithBreak(func(i int, n *goquery.Selection) bool {
 		limit--
-		a := n.Find("a.large")
+		a := n.Find("a.result__a")
 		href, _ := a.Attr("href")
 		results = append(results, &Result{
 			singleLine(a.Text()),
-			singleLine(n.Find(".snippet").Text()),
+			singleLine(n.Find(".result__snippet").Text()),
 			href,
 		})
 
