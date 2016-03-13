@@ -4,7 +4,7 @@ CROSSARCH := amd64 386
 CROSSOS := darwin linux openbsd netbsd freebsd
 CROSS := $(foreach os,$(CROSSOS),$(foreach arch,$(CROSSARCH),bin/$(os).$(arch)))
 
-.PHONY: run lint install reset publish
+.PHONY: lint install reset publish
 
 bin/tiif: $(SRC) assets/assets.go
 	@-mkdir bin 2>/dev/null || true
