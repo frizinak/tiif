@@ -1,0 +1,12 @@
+[submodule "vendor/github.com/PuerkitoBio/goquery"]
+	path = vendor/github.com/PuerkitoBio/goquery
+	url = git@github.com:PuerkitoBio/goquery
+[submodule "vendor/github.com/andybalholm/cascadia"]
+	path = vendor/github.com/andybalholm/cascadia
+	url = git@github.com:andybalholm/cascadia
+[submodule "vendor/github.com/skratchdot/open-golang"]
+	path = vendor/github.com/skratchdot/open-golang
+	url = git@github.com:skratchdot/open-golang
+[submodule "vendor/golang.org/x/net"]
+	path = vendor/golang.org/x/net
+	url = https://go.googlesource.com/net
